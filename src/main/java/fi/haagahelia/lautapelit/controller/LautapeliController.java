@@ -1,12 +1,15 @@
 package fi.haagahelia.lautapelit.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fi.haagahelia.lautapelit.domain.Lautapeli;
 import fi.haagahelia.lautapelit.domain.LautapeliRepository;
@@ -58,4 +61,10 @@ public class LautapeliController {
     	model.addAttribute("tyypit", trepository.findAll());
     	return "muokkaapeli";
     }   
+    
+ // RESTful kaikkien lautapelien etsintään
+    @RequestMapping(value="/lautapelit", method = RequestMethod.GET)
+    public @ResponseBody List<Lautapeli> LautapeliApplication() {	
+        return (List<Lautapeli>) repository.findAll();
+    }  
 }
