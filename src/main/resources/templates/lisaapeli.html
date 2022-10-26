@@ -14,21 +14,28 @@
 			<label for="nimi">Nimi</label> <input type="text" id="nimi"
 				th:field="*{nimi}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
+			<p th:if="${#fields.hasErrors('nimi')}" th:errors="*{nimi}">Error</p>
+			
 			<label for="tuotemerkki">Tuotemerkki</label> <input type="text"
 				id="tuotemerkki" th:field="*{tuotemerkki}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
+			
 			<label for="vuosi">Vuosi</label> <input type="text" id="vuosi"
 				th:field="*{vuosi}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
+			<p th:if="${#fields.hasErrors('vuosi')}" th:errors="*{vuosi}">Error</p>	
+			
 			<label for="isbn">Isbn</label> <input type="text" th:field="*{isbn}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
+			
 			<label for="hinta">Hinta</label> <input type="text"
 				th:field="*{hinta}" />
-
-			<div style="clear: both; display: block; height: 10px;"></div>						
+			<div style="clear: both; display: block; height: 10px;"></div>		
+						
+		  	
 		  	<label for="tlist">Tyyppi</label>
 			 <select id="tlist" th:field="*{tyyppi}" class="form-control">
-       			<option th:each="tyyppi: ${tyypit}" th:value="${tyyppi.tyyppiid}" th:text="${tyyppi.tnimi}"></option>
+       			<option th:each="tyyppi: ${tyypit}" th:value="${tyyppi.tyyppiId}" th:text="${tyyppi.tnimi}"></option>
     		</select>
 
 			<div style="clear: both; display: block; height: 10px;"></div>

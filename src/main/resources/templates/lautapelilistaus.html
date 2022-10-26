@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"> 
-
+<xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 
     <title>Lautapelilista</title>
@@ -26,8 +26,8 @@
  				<td th:text="${lautapeli.vuosi}"></td>
  				<td th:text="${lautapeli.hinta}"></td>
  				<td th:text="${lautapeli.tyyppi.tnimi}"></td> 
- 				<td><a th:href="@{/delete/{id}(id=${lautapeli.id})}" class="btn btn-danger">Delete</a></td>  
-				<td><a th:href="@{/edit/{id}(id=${lautapeli.id})}">Edit</a></td>    	
+ 				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${lautapeli.id})}" class="btn btn-danger">Delete</a></td>  
+				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${lautapeli.id})}">Edit</a></td>    	
     	</tr>
      </table>
 	 <a href="/add" class="btn btn-success">Add peli</a> 

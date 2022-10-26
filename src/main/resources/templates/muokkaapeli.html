@@ -28,7 +28,7 @@
 									
 		  	<label for="tlist">Tyyppi</label>
 			 <select id="tlist" th:field="*{tyyppi}" class="form-control">
-       			<option th:each="tyyppi: ${tyypit}" th:value="${tyyppi.tyyppiid}" th:text="${tyyppi.tnimi}"></option>
+       			<option th:each="tyyppi: ${tyypit}" th:value="${tyyppi.tyyppiId}" th:text="${tyyppi.tnimi}"></option>
     		</select>
 			
 			<div style="clear: both; display: block; height: 10px;"></div>
