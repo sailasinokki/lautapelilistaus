@@ -1,36 +1,54 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org"> 
+<html xmlns:th="http://www.thymeleaf.org">
 <xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head>
+	<head>
 
-    <title>Lautapelilista</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
-</head>
-<body>
-	<h1>Lautapelit</h1>
-	
-      	 <table class="table table-striped">
-		<tr>
-		    <th>Peli</th>
-		    <th>Tuotemerkki</th>
-		    <th>Isbn</th>
-		     <th>vuosi</th>
-		    <th>hinta</th>
-		</tr>  
-    	<tr th:each = "lautapeli : ${lautapelit}">  
-    		<td th:text="${lautapeli.nimi}"></td>
-    		<td th:text="${lautapeli.tuotemerkki}"></td>
-    		 	<td th:text="${lautapeli.isbn}"></td>
- 				<td th:text="${lautapeli.vuosi}"></td>
- 				<td th:text="${lautapeli.hinta}"></td>
- 				<td th:text="${lautapeli.tyyppi.tnimi}"></td> 
- 				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${lautapeli.id})}" class="btn btn-danger">Delete</a></td>  
-				<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${lautapeli.id})}">Edit</a></td>    	
-    	</tr>
-     </table>
-	 <a href="/add" class="btn btn-success">Add peli</a> 
-	 
-</body>
+<title>Lautapelilista</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+	</head>
+	<body>
+		<h1>Lautapelit</h1>
+
+		<table class="table table-striped">
+			<tr>
+				<th>Peli</th>
+				<th>Tuotemerkki</th>
+				<th>Isbn</th>
+				<th>vuosi</th>
+				<th>hinta</th>
+			</tr>
+			<tr th:each="lautapeli : ${lautapelit}">
+				<td th:text="${lautapeli.nimi}"></td>
+				<td th:text="${lautapeli.tuotemerkki}"></td>
+				<td th:text="${lautapeli.isbn}"></td>
+				<td th:text="${lautapeli.vuosi}"></td>
+				<td th:text="${lautapeli.hinta}"></td>
+				<td th:text="${lautapeli.tyyppi.tnimi}"></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a
+					th:href="@{/delete/{id}(id=${lautapeli.id})}"
+					class="btn btn-danger">Delete</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a
+					th:href="@{/edit/{id}(id=${lautapeli.id})}">Edit</a></td>
+			</tr>
+		</table>
+		<a href="/add" class="btn btn-success">Add peli</a>
+
+		<p></p>
+		<p></p>
+		<p>Voit myös tallentaa kuvan lautapelistä ja se lisätään
+			tietokantaan myöhemmin:</p>
+
+
+		<form method="POST" action="/lautapelilistaus"
+			enctype="multipart/form-data">
+			<input type="file" name="file" /><br /> <input type="submit"
+				value="Submit" />
+		</form>
+
+
+
+	</body>
 </html>
